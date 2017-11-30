@@ -1,0 +1,21 @@
+{
+  "name": "vue-simple-svg",
+  "version": "1.0.0",
+  "description": "A simple Vue.js plugin that allows you to load a SVG image as an inline SVG with an access to change the fill colors",
+  "main": "dist/index.js",
+  "scripts": {
+  },
+  "keywords": [
+    "vue svg",
+    "vuejs svg",
+    "vue.js svg"
+  ],
+  "author": "Seiya Kobayashi",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "uglify-js": "^3.2.0"
+  },
+  "dependencies": {}
+}
