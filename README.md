@@ -40,4 +40,4 @@ and in your component,
 - add demo
 
 ### References:
-- Loading a SVG with XMLHttpRequest and DOMParser [https://github.com/jonnyhaynes/inline-svg]
+- Loading a SVG with XMLHttpRequest and DOMParser https://github.com/jonnyhaynes/inline-svg
