@@ -43,7 +43,6 @@ let SimpleSVG = {
           let parser = new DOMParser()
           let result = parser.parseFromString(request.responseText, 'text/xml')
           let inlinedSVG = result.getElementsByTagName('svg')[0]
-          console.log('inlinedSVG: ', inlinedSVG)
 
           // Remove some of the attributes that aren't needed
           inlinedSVG.removeAttribute('xmlns:a')
