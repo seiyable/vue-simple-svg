@@ -1,10 +1,8 @@
 import Vue from 'vue'
 import App from './App'
 
-import VueSimpleSVG from '../dist/index.js'
+import VueSimpleSVG from '../dist/plugin.js'
 Vue.use(VueSimpleSVG)
-
-// Vue.config.productionTip = false
 
 new Vue({
   el: '#app',
