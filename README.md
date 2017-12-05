@@ -38,6 +38,9 @@ and in your component,
 
 ### Todo:
 - parse inline svg tags to overwrite fill parameters
+- make width and height also reactive
+- error handling for an invalid source file
+- enable applying various colors to multiple paths in an SVG
 - add demo
 
 ### References:
