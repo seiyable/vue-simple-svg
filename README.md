@@ -37,7 +37,9 @@ and in your component,
 | @ready | called when the svg is loaded |
 
 ### Todo:
+- parse inline svg tags to overwrite fill parameters
 - add demo
 
 ### References:
 - Loading a SVG with XMLHttpRequest and DOMParser https://github.com/jonnyhaynes/inline-svg
+- Parsing inline svg tags https://github.com/MMF-FE/vue-svgicon
