@@ -2,13 +2,13 @@
   "name": "vue-simple-svg",
   "version": "1.0.1",
   "description": "A simple Vue.js plugin that allows you to use a component that loads a SVG image as an inline SVG so you can easily control its fill color from the parent component.",
-  "main": "dist/index.js",
+  "main": "dist/plugin.js",
   "scripts": {
     "gulp": "gulp default",
     "dev-demo": "webpack-dev-server --inline --progress --config demo/build/webpack.dev.conf.js",
     "start": "npm run dev-demo",
-    "unit": "jest --config test/unit/jest.conf.js --coverage",
-    "e2e": "node test/e2e/runner.js",
+    "unit": "jest --config demo/test/unit/jest.conf.js --coverage",
+    "e2e": "node demo/test/e2e/runner.js",
     "test": "npm run unit && npm run e2e",
     "build-demo": "node demo/build/build.js"
   },
