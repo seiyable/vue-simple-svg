@@ -2,16 +2,17 @@
  Vue Template
 ================================================== -->
 <template>
-  <div @click="toggle()" class="svg-button" :style="getButtonStyle">
+  <div @click="toggle()" class="svg-button" :style="{'background-color': getButtonBGColor}">
     <div class="svg-button-container">
       <simple-svg
         :filepath="svgFilepath"
-        :color="getColor"
+        :color="getSVGFillColor"
         :width="svgWidth"
         :height="svgHeight"
+        :id="svgId"
         @ready="svgReady()"
         />
-      <p class="button-label" :style="getLabelStyle"> {{ buttonLabel }} </p>
+      <p class="button-label" :style="{'color': getLabelColor}"> {{ buttonLabel }} </p>
     </div>
   </div>
 </template>
@@ -25,43 +26,24 @@ export default {
   data () {
     return {
       isActive: false,
-      regularFill: 'white',
-      activeFill: '#AD00AD',
-      svgFilepath: '/demo/assets/' + 'ufo.svg',
-      svgWidth: 100 + 'px',
-      svgHeight: 100 + 'px',
-      buttonLabel: 'UFO'
+      regularFill: 'oldlace',
+      activeFill: 'tomato',
+      svgFilepath: '/demo/assets/' + 'fishing.svg',
+      svgWidth: 200 + 'px',
+      svgHeight: 200 + 'px',
+      svgId: 'mySVG',
+      buttonLabel: 'Click me to toggle'
     }
   },
   computed: {
-    getColor () {
-      if (this.isActive) {
-        return this.activeFill
-      } else {
-        return this.regularFill
-      }
+    getSVGFillColor () {
+      return this.isActive ? this.activeFill : this.regularFill
     },
-    getButtonStyle () {
-      if (this.isActive) {
-        return {
-          'background-color': this.regularFill
-        }
-      } else {
-        return {
-          'background-color': this.activeFill
-        }
-      }
+    getButtonBGColor () {
+      return this.isActive ? this.regularFill : this.activeFill
     },
-    getLabelStyle () {
-      if (this.isActive) {
-        return {
-          'color': this.activeFill
-        }
-      } else {
-        return {
-          'color': this.regularFill
-        }
-      }
+    getLabelColor () {
+      return this.isActive ? this.activeFill : this.regularFill
     }
   },
   methods: {
@@ -85,15 +67,24 @@ export default {
   left: 50%;
   transform: translate(-50%, -50%);
   -webkit-transform: translate(-50%, -50%);
-  border-radius: 8px;
+  border-radius: 20px;
   width: 400px;
   height: 300px;
   padding: 20px;
   text-align: center;
   user-select: none;
+  display: table;
+}
+
+.svg-button-container {
+  height: 100%;
+  display: table-cell;
+  vertical-align: middle;
 }
 
 p.button-label {
   font-size: 32px;
+  margin-top: 20px;
+  font-weight: bold;
 }
 </style>

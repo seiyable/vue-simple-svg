@@ -6,6 +6,7 @@
 
 <script>
 import SvgButton from './components/SvgButton'
+require('reset.css')
 
 export default {
   name: 'app',
@@ -22,7 +23,7 @@ html, body, #app {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
 
-  background-color: whitesmoke;
+  background-color: seagreen;
   height: 100%;
 }
 </style>

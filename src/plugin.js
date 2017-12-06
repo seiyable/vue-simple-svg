@@ -1,3 +1,5 @@
+// const css = require('css')
+// import css from 'css'
 const myClassName = 'simple-svg'
 
 let SimpleSVG = {
@@ -17,6 +19,10 @@ let SimpleSVG = {
     height: {
       type: String,
       default: '1em'
+    },
+    id: {
+      type: String,
+      defualt: ''
     }
   },
   mounted () {
@@ -44,6 +50,11 @@ let SimpleSVG = {
           let result = parser.parseFromString(request.responseText, 'text/xml')
           let inlinedSVG = result.getElementsByTagName('svg')[0]
 
+          let styleContent = inlinedSVG.getElementsByTagName('style')[0].textContent
+          console.log('style:', styleContent)
+
+          // console.log('parsed style:', css.parse(styleContent))
+
           // Remove some of the attributes that aren't needed
           inlinedSVG.removeAttribute('xmlns:a')
           inlinedSVG.removeAttribute('width')
@@ -55,6 +66,9 @@ let SimpleSVG = {
           inlinedSVG.removeAttribute('xml:space')
           inlinedSVG.removeAttribute('version')
 
+          console.log('inlinedSVG:', inlinedSVG)
+
+          if (context.id) inlinedSVG.id = context.id
           inlinedSVG.style.width = context.width
           inlinedSVG.style.height = context.height
           inlinedSVG.style.fill = context.color

@@ -4,7 +4,7 @@
   "description": "A simple Vue.js plugin that allows you to use a component that loads a SVG image as an inline SVG so you can easily control its fill color from the parent component.",
   "main": "dist/plugin.js",
   "scripts": {
-    "gulp": "gulp default",
+    "rollup": "rollup --config rollup.config.js",
     "dev-demo": "webpack-dev-server --inline --progress --config demo/build/webpack.dev.conf.js",
     "start": "npm run dev-demo",
     "unit": "jest --config demo/test/unit/jest.conf.js --coverage",
@@ -19,7 +19,8 @@
   "keywords": [
     "vue svg",
     "vuejs svg",
-    "vue.js svg"
+    "vue.js svg",
+    "vue inline svg"
   ],
   "author": "Seiya Kobayashi",
   "license": "MIT",
@@ -33,6 +34,7 @@
     "babel-plugin-transform-es2015-modules-commonjs": "^6.26.0",
     "babel-plugin-transform-runtime": "^6.22.0",
     "babel-preset-env": "^1.3.2",
+    "babel-preset-es2015-rollup": "^3.0.0",
     "babel-preset-stage-2": "^6.22.0",
     "babel-register": "^6.22.0",
     "chalk": "^2.0.1",
@@ -44,9 +46,6 @@
     "extract-text-webpack-plugin": "^3.0.0",
     "file-loader": "^1.1.4",
     "friendly-errors-webpack-plugin": "^1.6.1",
-    "gulp": "^3.9.1",
-    "gulp-babel": "^7.0.0",
-    "gulp-uglify": "^3.0.0",
     "html-webpack-plugin": "^2.30.1",
     "jest": "^21.2.0",
     "jest-serializer-vue": "^0.3.0",
@@ -57,7 +56,11 @@
     "portfinder": "^1.0.13",
     "postcss-import": "^11.0.0",
     "postcss-loader": "^2.0.8",
+    "reset.css": "^2.0.2",
     "rimraf": "^2.6.0",
+    "rollup": "^0.52.1",
+    "rollup-plugin-babel": "^3.0.2",
+    "rollup-plugin-uglify": "^2.0.1",
     "selenium-server": "^3.0.1",
     "semver": "^5.3.0",
     "shelljs": "^0.7.6",
@@ -73,5 +76,7 @@
     "webpack-dev-server": "^2.9.1",
     "webpack-merge": "^4.1.0"
   },
-  "dependencies": {}
+  "dependencies": {
+    "css": "^2.2.1"
+  }
 }
