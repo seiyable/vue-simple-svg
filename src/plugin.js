@@ -1,4 +1,5 @@
-// const css = require('css')
+const CSSParser = require('css-js')
+const cssParser = new CSSParser()
 const myClassName = 'simple-svg'
 
 let SimpleSVG = {
@@ -43,34 +44,38 @@ let SimpleSVG = {
     },
     /* remove a style tag from a inline svg to prevent a global namespace pollution and conflict with other svgs,
     and apply the css rules to each element that needs the style */
-    /*
     removeStyleTag (inlinedSVG) {
       let styleElement = inlinedSVG.getElementsByTagName('style')[0]
-      let parsedStyle = css.parse(styleElement.textContent)
-      let parsedRules = parsedStyle.stylesheet.rules
+      let parsedStyle = cssParser.parse(styleElement.textContent)
+      let parsedRules = parsedStyle.rulesets
 
       // check if there are elements with the classes to be removed
       let elements = inlinedSVG.getElementsByTagName('*')
       for (let i = 0; i < elements.length; i++) {
         for (let j = 0; j < parsedRules.length; j++) {
-          // class selectors to be removed
-          let selectorsToRemove = parsedRules[j].selectors
+          // class selector to be removed
+          let selectorToRemove = parsedRules[j].selector
 
-          // style rule declarations to be added instead
-          let rulesToAdd = parsedRules[j].declarations
+          if (this.isClassSelector(selectorToRemove)) {
+            // if the selector is a class
 
-          for (let k = 0; k < selectorsToRemove.length; k++) {
-            let className = selectorsToRemove[k].substring(1)
-            if (this.isClassSelector(selectorsToRemove) && elements[i].classList.contains(className)) {
+            // prepare the classname without a dot at the beginning
+            let className = selectorToRemove.substring(1)
 
-              // if an element has a class to be removed, remove it
+            // style rule declarations associated with the class, which is going to be added to the element directly
+            let declarationsToAdd = parsedRules[j].declaration
+
+            if (elements[i].classList.contains(className)) {
+              // if an element has a class to be removed
+
+              // remove the class
               elements[i].classList.remove(className)
 
-              // and add the style rules directly to the element
-              for (let l = 0; l < rulesToAdd.length; l++) {
-                let property = rulesToAdd[l].property
-                let value = rulesToAdd[l].value
-                elements[i].style[property] = value
+              // and add the style declarations directly to the element
+              for (let l = 0; l < declarationsToAdd.length; l++) {
+                let key = declarationsToAdd[l].key
+                let value = declarationsToAdd[l].value
+                elements[i].style[key] = value
               }
             }
           }
@@ -81,7 +86,6 @@ let SimpleSVG = {
       inlinedSVG.removeChild(styleElement)
       return inlinedSVG
     },
-    */
     /* load a svg image with xml http request to get an inlined svg and append it to this component */
     generateInlineSVG () {
       const context = this
@@ -91,15 +95,17 @@ let SimpleSVG = {
       request.open('GET', this.filepath, true)
       request.onload = function () {
         if (request.status >= 200 && request.status < 400) {
-          // Setup a parser to convert the response to text/xml in order for it
+          // Setup a dom parser to convert the response to text/xml in order for it
           // to be manipulated and changed
-          let parser = new DOMParser()
-          let result = parser.parseFromString(request.responseText, 'text/xml')
+          let domParser = new DOMParser()
+          let result = domParser.parseFromString(request.responseText, 'text/xml')
           let inlinedSVG = result.getElementsByTagName('svg')[0]
+
+          let styleElement = inlinedSVG.getElementsByTagName('style')[0]
 
           // there are some svgs that have style tags which cause a global namespace pollution and conflict with other svgs,
           // so let's remove the style tags and apply the style rules to each element that needs the rules
-          // inlinedSVG = context.removeStyleTag(inlinedSVG)
+          inlinedSVG = context.removeStyleTag(inlinedSVG)
 
           // Remove some of the attributes that aren't needed
           inlinedSVG.removeAttribute('xmlns:a')
