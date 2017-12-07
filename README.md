@@ -20,6 +20,7 @@ and in your component,
   :color="getColor"
   :width="'400px'"
   :height="'400px'"
+  :id="'custom-id'"
   @ready="onSvgReady()"
   />
 ```
@@ -31,6 +32,7 @@ and in your component,
 | color | string | svg's fill color |
 | width | string | svg's width |
 | height | string | svg's height |
+| id | string | custom color |
 
 | events | description |
 | ------ | ------ |

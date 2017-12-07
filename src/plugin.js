@@ -24,19 +24,33 @@ let SimpleSVG = {
       defualt: ''
     }
   },
+  data () {
+    return {
+      isSVGReady: false
+    }
+  },
   mounted () {
     // generate inline svg
     this.generateInlineSVG()
   },
   watch: {
+    filepath (val) {
+      // re-generate inline svg
+      this.generateInlineSVG()
+    },
     color (val) {
-      let svg = this.$el.getElementsByTagName('svg')[0]
-      svg.style.fill = val
+      this.updateSVGStyle('fill', val)
+    },
+    width (val) {
+      this.updateSVGStyle('width', val)
+    },
+    height (val) {
+      this.updateSVGStyle('height', val)
     }
   },
   methods: {
     /* check if the argument is a class selector that starts with a dot */
-    /* need to be updated this to  */
+    /* this is a quite simple expression so needs to be updated in the future */
     isClassSelector (selector) {
       let regex = new RegExp(/^\./, 'i')
       return (regex.test(selector)) ? true : false
@@ -87,6 +101,13 @@ let SimpleSVG = {
     generateInlineSVG () {
       const context = this
 
+      // reset first
+      this.isSVGReady = false
+      let svgElement = this.$el.getElementsByTagName('svg')[0]
+      if (svgElement) {
+        this.$el.removeChild(svgElement)
+      }
+
       // Get the contents of the SVG
       let request = new XMLHttpRequest()
       request.open('GET', this.filepath, true)
@@ -126,6 +147,7 @@ let SimpleSVG = {
           context.$el.appendChild(inlinedSVG)
 
           // now the svg is ready to show
+          this.isSVGReady = true
           context.$emit('ready')
         } else {
           console.error('There was an error retrieving the source of the SVG.')
@@ -137,6 +159,15 @@ let SimpleSVG = {
       }
 
       request.send()
+    },
+    /* update SVG's style */
+    updateSVGStyle (property, value) {
+      let svgElement = this.$el.getElementsByTagName('svg')[0]
+      if (svgElement) {
+        svgElement.style[property] = value
+      } else {
+        console.error('no svg element found')
+      }
     }
   }
 }
