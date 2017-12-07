@@ -1,6 +1,4 @@
-// const CSSParser = require('css-js')
-// const cssParser = new CSSParser()
-const gonzales = require('gonzales')
+// const gonzales = require('gonzales')
 const myClassName = 'simple-svg'
 
 let SimpleSVG = {
@@ -104,9 +102,9 @@ let SimpleSVG = {
           let result = domParser.parseFromString(request.responseText, 'text/xml')
           let inlinedSVG = result.getElementsByTagName('svg')[0]
 
-          let styleElement = inlinedSVG.getElementsByTagName('style')[0]
-          let ast = gonzales.srcToCSSP(styleElement.textContent)
-          console.log('ast', ast)
+          // let styleElement = inlinedSVG.getElementsByTagName('style')[0]
+          // let ast = gonzales.srcToCSSP(styleElement.textContent)
+          // console.log('ast', ast)
 
           // there are some svgs that have style tags which cause a global namespace pollution and conflict with other svgs,
           // so let's remove the style tags and apply the style rules to each element that needs the rules
