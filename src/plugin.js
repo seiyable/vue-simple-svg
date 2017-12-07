@@ -99,12 +99,12 @@ let SimpleSVG = {
           let inlinedSVG = result.getElementsByTagName('svg')[0]
 
           let styleElement = inlinedSVG.getElementsByTagName('style')[0]
-          let parsedStyle = CSSOM.parse(styleElement.textContent)
-          console.log('parsedStyle', parsedStyle)
 
-          // there are some svgs that have style tags which cause a global namespace pollution and conflict with other svgs,
-          // so let's remove the style tags and apply the style rules to each element that needs the rules
-          inlinedSVG = context.removeStyleTag(inlinedSVG)
+          if (styleElement) {
+            // there are some svgs that have style tags which cause a global namespace pollution and conflict with other svgs,
+            // so let's remove the style tags and apply the style rules to each element that needs the rules
+            inlinedSVG = context.removeStyleTag(inlinedSVG)
+          }
 
           // Remove some of the attributes that aren't needed
           inlinedSVG.removeAttribute('xmlns:a')
