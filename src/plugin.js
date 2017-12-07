@@ -1,4 +1,4 @@
-// const gonzales = require('gonzales')
+const CSSOM = require('cssom')
 const myClassName = 'simple-svg'
 
 let SimpleSVG = {
@@ -43,18 +43,17 @@ let SimpleSVG = {
     },
     /* remove a style tag from a inline svg to prevent a global namespace pollution and conflict with other svgs,
     and apply the css rules to each element that needs the style */
-    /*
     removeStyleTag (inlinedSVG) {
       let styleElement = inlinedSVG.getElementsByTagName('style')[0]
-      let parsedStyle = cssParser.parse(styleElement.textContent)
-      let parsedRules = parsedStyle.rulesets
+      let parsedStyle = CSSOM.parse(styleElement.textContent)
+      let cssRules = parsedStyle.cssRules
 
-      // check if there are elements with the classes to be removed
+      // check every element if there is one with the classes to be removed
       let elements = inlinedSVG.getElementsByTagName('*')
       for (let i = 0; i < elements.length; i++) {
-        for (let j = 0; j < parsedRules.length; j++) {
+        for (let j = 0; j < cssRules.length; j++) {
           // class selector to be removed
-          let selectorToRemove = parsedRules[j].selector
+          let selectorToRemove = cssRules[j].selectorText
 
           if (this.isClassSelector(selectorToRemove)) {
             // if the selector is a class
@@ -62,21 +61,19 @@ let SimpleSVG = {
             // prepare the classname without a dot at the beginning
             let className = selectorToRemove.substring(1)
 
-            // style rule declarations associated with the class, which is going to be added to the element directly
-            let declarationsToAdd = parsedRules[j].declaration
-
             if (elements[i].classList.contains(className)) {
               // if an element has a class to be removed
 
               // remove the class
               elements[i].classList.remove(className)
 
-              // and add the style declarations directly to the element
-              for (let l = 0; l < declarationsToAdd.length; l++) {
-                let key = declarationsToAdd[l].key
-                let value = declarationsToAdd[l].value
-                elements[i].style[key] = value
-              }
+              // style rule declaration associated with the class, which is going to be added to the element directly
+              let declarationToAdd = cssRules[j].style
+
+              // and add the style declaration directly to the element
+              let key = declarationToAdd[0]
+              let value = declarationToAdd[key]
+              elements[i].style[key] = value
             }
           }
         }
@@ -86,7 +83,6 @@ let SimpleSVG = {
       inlinedSVG.removeChild(styleElement)
       return inlinedSVG
     },
-    */
     /* load a svg image with xml http request to get an inlined svg and append it to this component */
     generateInlineSVG () {
       const context = this
@@ -102,13 +98,13 @@ let SimpleSVG = {
           let result = domParser.parseFromString(request.responseText, 'text/xml')
           let inlinedSVG = result.getElementsByTagName('svg')[0]
 
-          // let styleElement = inlinedSVG.getElementsByTagName('style')[0]
-          // let ast = gonzales.srcToCSSP(styleElement.textContent)
-          // console.log('ast', ast)
+          let styleElement = inlinedSVG.getElementsByTagName('style')[0]
+          let parsedStyle = CSSOM.parse(styleElement.textContent)
+          console.log('parsedStyle', parsedStyle)
 
           // there are some svgs that have style tags which cause a global namespace pollution and conflict with other svgs,
           // so let's remove the style tags and apply the style rules to each element that needs the rules
-          // inlinedSVG = context.removeStyleTag(inlinedSVG)
+          inlinedSVG = context.removeStyleTag(inlinedSVG)
 
           // Remove some of the attributes that aren't needed
           inlinedSVG.removeAttribute('xmlns:a')
