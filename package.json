@@ -77,6 +77,7 @@
     "webpack-merge": "^4.1.0"
   },
   "dependencies": {
-    "css-js": "^1.0.6"
+    "css-js": "^1.0.6",
+    "gonzales": "^1.0.7"
   }
 }
