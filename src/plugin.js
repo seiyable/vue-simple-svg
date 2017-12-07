@@ -1,5 +1,5 @@
-const CSSParser = require('css-js')
-const cssParser = new CSSParser()
+// const CSSParser = require('css-js')
+// const cssParser = new CSSParser()
 const myClassName = 'simple-svg'
 
 let SimpleSVG = {
@@ -44,6 +44,7 @@ let SimpleSVG = {
     },
     /* remove a style tag from a inline svg to prevent a global namespace pollution and conflict with other svgs,
     and apply the css rules to each element that needs the style */
+    /*
     removeStyleTag (inlinedSVG) {
       let styleElement = inlinedSVG.getElementsByTagName('style')[0]
       let parsedStyle = cssParser.parse(styleElement.textContent)
@@ -86,6 +87,7 @@ let SimpleSVG = {
       inlinedSVG.removeChild(styleElement)
       return inlinedSVG
     },
+    */
     /* load a svg image with xml http request to get an inlined svg and append it to this component */
     generateInlineSVG () {
       const context = this
@@ -105,7 +107,7 @@ let SimpleSVG = {
 
           // there are some svgs that have style tags which cause a global namespace pollution and conflict with other svgs,
           // so let's remove the style tags and apply the style rules to each element that needs the rules
-          inlinedSVG = context.removeStyleTag(inlinedSVG)
+          // inlinedSVG = context.removeStyleTag(inlinedSVG)
 
           // Remove some of the attributes that aren't needed
           inlinedSVG.removeAttribute('xmlns:a')
