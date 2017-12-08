@@ -43,6 +43,10 @@ and in your component,
 | ------ | ------ |
 | @ready | called when the svg is loaded |
 
+### Notes:
+- inline svg element has a class '.simple-svg'
+- inline svg has a div wrapper with a class '.simple-svg-wrapper'
+
 ### Todo:
 - error handling for an invalid source file
 - enable applying various colors to multiple paths in an SVG
