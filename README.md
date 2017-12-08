@@ -1,5 +1,5 @@
 # vue-simple-svg
-A simple Vue.js plugin that allows you to use a component that loads a SVG image as an inline SVG so you can easily control its fill color from the parent component. No jQuery required.
+A simple Vue.js plugin that allows you to use a component that loads a .svg image as an inline SVG so you can easily control its fill color from the parent component. No jQuery required.
 
 # Demo
 ![result](https://media.giphy.com/media/26FeVejNWHXsZiaIM/giphy.gif)
@@ -30,23 +30,21 @@ and in your component,
 ```
 
 ### Available props and events:
-| props | type | description |
-| ------ | ------ | ------ |
-| filepath | string | path to your svg file |
-| color | string | svg's fill color |
-| width | string | svg's width |
-| height | string | svg's height |
-| id | string | custom color |
+| props | type | description | default |
+| ------ | ------ | ------ | ------ |
+| filepath | string | path to your svg file | |
+| color | string | svg's fill color | 'black' |
+| width | string | svg's width | '1em' |
+| height | string | svg's height | '1em' |
+| id | string | custom color | '' |
 
 | events | description |
 | ------ | ------ |
 | @ready | called when the svg is loaded |
 
 ### Todo:
-- make width and height also reactive
 - error handling for an invalid source file
 - enable applying various colors to multiple paths in an SVG
-- add demo
 
 ### Reference:
 - Loading a SVG with XMLHttpRequest and DOMParser https://github.com/jonnyhaynes/inline-svg
