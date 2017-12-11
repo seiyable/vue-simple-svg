@@ -48,7 +48,6 @@ and in your component,
 - inline svg has a div wrapper with a class '.simple-svg-wrapper'
 
 ### Todo:
-- error handling for an invalid source file
 - enable applying various colors to multiple paths in an SVG
 
 ### Reference:
