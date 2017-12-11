@@ -119,6 +119,10 @@ let SimpleSVG = {
           let result = domParser.parseFromString(request.responseText, 'text/xml')
           let inlinedSVG = result.getElementsByTagName('svg')[0]
 
+          if (!inlinedSVG) {
+            console.error('No svg element found. Did you pass a valid .svg file?')
+            return
+          }
           let styleElement = inlinedSVG.getElementsByTagName('style')[0]
 
           if (styleElement) {
@@ -166,7 +170,7 @@ let SimpleSVG = {
       if (svgElement) {
         svgElement.style[property] = value
       } else {
-        console.error('no svg element found')
+        console.error('No svg element found. Did you pass a valid .svg file?')
       }
     }
   }
