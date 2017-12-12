@@ -51,7 +51,7 @@ To run demo in your local environment,
 ```sh
 $ npm run dev-demo
 ```
-You can find the code of an example component that has a <simple-svg> component as its child in demo/components/SvgButton.vue
+You can find the code of an example component that has a simple-svg component as its child in demo/components/SvgButton.vue
 
 
 ### Todo:
