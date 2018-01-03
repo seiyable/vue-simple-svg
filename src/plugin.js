@@ -85,16 +85,18 @@ let SimpleSVG = {
               let declarationToAdd = cssRules[j].style
 
               // and add the style declaration directly to the element
-              let key = declarationToAdd[0]
-              let value = declarationToAdd[key]
-              elements[i].style[key] = value
+              for (let k = 0; k < declarationToAdd.length; k++) {
+                let key = declarationToAdd[k]
+                let value = declarationToAdd[key]
+                elements[i].style[key] = value
+              }
             }
           }
         }
       }
 
       // remove the style tag
-      inlinedSVG.removeChild(styleElement)
+      styleElement.parentNode.removeChild(styleElement)
       return inlinedSVG
     },
     /* load a svg image with xml http request to get an inlined svg and append it to this component */

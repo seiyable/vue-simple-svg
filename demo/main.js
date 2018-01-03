@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import App from './App'
 
-import VueSimpleSVG from '../dist/plugin.js'
+// import VueSimpleSVG from '../dist/plugin.js'
+import VueSimpleSVG from '../src/plugin.js'
 Vue.use(VueSimpleSVG)
 
 let vss = require('../dist/plugin.js')
