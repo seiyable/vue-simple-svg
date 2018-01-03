@@ -6,7 +6,8 @@
     <div class="svg-button-container">
       <simple-svg
         :filepath="svgFilepath"
-        :color="getSVGFillColor"
+        :fill="getSVGFillColor"
+        :stroke="getSVGFillColor"
         :width="svgWidth"
         :height="svgHeight"
         :id="svgId"

@@ -7,7 +7,11 @@ let SimpleSVG = {
   name: 'simple-svg',
   props: {
     filepath: String,
-    color: {
+    fill: {
+      type: String,
+      default: 'black'
+    },
+    stroke: {
       type: String,
       default: 'black'
     },
@@ -38,8 +42,11 @@ let SimpleSVG = {
       // re-generate inline svg
       this.generateInlineSVG()
     },
-    color (val) {
+    fill (val) {
       this.updateSVGStyle('fill', val)
+    },
+    stroke (val) {
+      this.updateSVGStyle('stroke', val)
     },
     width (val) {
       this.updateSVGStyle('width', val)
@@ -99,6 +106,20 @@ let SimpleSVG = {
       styleElement.parentNode.removeChild(styleElement)
       return inlinedSVG
     },
+    /* remove fill and stroke style declarations in the each path to enable color control */
+    removeFillStrokeStyles (inlinedSVG) {
+      let elements = inlinedSVG.getElementsByTagName('*')
+      for (let i = 0; i < elements.length; i++) {
+        let fill = elements[i].style.fill
+        if (fill && fill !== 'none') {
+          elements[i].style.fill = ''
+        }
+        let stroke = elements[i].style.stroke
+        if (stroke && stroke !== 'none') {
+          elements[i].style.stroke = ''
+        }
+      }
+    },
     /* load a svg image with xml http request to get an inlined svg and append it to this component */
     generateInlineSVG () {
       const context = this
@@ -133,6 +154,9 @@ let SimpleSVG = {
             inlinedSVG = context.removeStyleTag(inlinedSVG)
           }
 
+          // remove fill and stroke style declarations in the each path to enable color control
+          context.removeFillStrokeStyles(inlinedSVG)
+
           // Remove some of the attributes that aren't needed
           inlinedSVG.removeAttribute('xmlns:a')
           inlinedSVG.removeAttribute('width')
@@ -147,7 +171,8 @@ let SimpleSVG = {
           if (context.id) inlinedSVG.id = context.id
           inlinedSVG.style.width = context.width
           inlinedSVG.style.height = context.height
-          inlinedSVG.style.fill = context.color
+          inlinedSVG.style.fill = context.fill
+          inlinedSVG.style.stroke = context.stroke
           inlinedSVG.classList.add(myClassName) // add an additional class
 
           context.$el.appendChild(inlinedSVG)
