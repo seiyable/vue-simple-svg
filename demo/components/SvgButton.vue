@@ -29,7 +29,7 @@ export default {
       isActive: false,
       regularFill: 'oldlace',
       activeFill: 'tomato',
-      svgFilepath: '/demo/assets/' + 'recording-error.svg',
+      svgFilepath: '/demo/assets/' + 'ufo.svg',
       svgWidth: 200 + 'px',
       svgHeight: 200 + 'px',
       svgId: 'mySVG',
