@@ -17,7 +17,8 @@ and in your component,
 ```html
 <simple-svg
   :filepath="'/PATH_/TO_/YOUR_/FILE.svg'"
-  :color="getColor"
+  :fill="getFillColor"
+  :stroke="getStrokeColor"
   :width="'400px'"
   :height="'400px'"
   :id="'custom-id'"
@@ -29,7 +30,8 @@ and in your component,
 | props | type | description | default |
 | ------ | ------ | ------ | ------ |
 | filepath | string | path to your svg file | |
-| color | string | svg's fill color | 'black' |
+| fill | string | svg's fill color | 'black' |
+| stroke | string | svg's stroke color | 'black' |
 | width | string | svg's width | '1em' |
 | height | string | svg's height | '1em' |
 | id | string | custom color | '' |
@@ -42,7 +44,7 @@ and in your component,
 ### Notes:
 - inline svg element has a class '.simple-svg'
 - inline svg has a div wrapper with a class '.simple-svg-wrapper'
-
+- fill/stroke style set to a path of a SVG will be removed unless its value is 'none'
 
 ### Demo:
 ![result](https://media.giphy.com/media/26FeVejNWHXsZiaIM/giphy.gif)
