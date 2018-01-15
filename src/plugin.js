@@ -110,6 +110,9 @@ let SimpleSVG = {
     removeFillStrokeStyles (inlinedSVG) {
       let elements = inlinedSVG.getElementsByTagName('*')
       for (let i = 0; i < elements.length; i++) {
+        if(elements[i].style === undefined) {
+          continue
+        }
         let fill = elements[i].style.fill
         if (fill && fill !== 'none') {
           elements[i].style.fill = ''
