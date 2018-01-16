@@ -2,8 +2,13 @@ const CSSOM = require('cssom')
 const myClassName = 'simple-svg'
 
 let SimpleSVG = {
-  template:
-    '<div class="simple-svg-wrapper"></div>',
+  render (createElement) {
+    return createElement('div', {
+      'class': [
+        'simple-svg-wrapper'
+      ]
+    })
+  },
   name: 'simple-svg',
   props: {
     filepath: String,
