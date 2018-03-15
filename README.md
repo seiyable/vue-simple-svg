@@ -7,13 +7,18 @@ $ npm install vue-simple-svg
 ```
 
 ### Usage:
-in your Vue's main file,
+initialize in your Vue's main file,
 ```javascript
+// as a plugin
 import VueSimpleSVG from 'vue-simple-svg'
 Vue.use(VueSimpleSVG)
+
+// or as a component
+import {SimpleSVG} from 'vue-simple-svg'
+Vue.component('simple-svg', SimpleSVG)
 ```
 
-and in your component,
+and use in your component,
 ```html
 <simple-svg
   :filepath="'/PATH_/TO_/YOUR_/FILE.svg'"
