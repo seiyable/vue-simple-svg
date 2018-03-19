@@ -217,4 +217,4 @@ let plugin = {
   }
 }
 
-export default plugin
+export {plugin as default, SimpleSVG}
