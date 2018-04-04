@@ -12,22 +12,10 @@ let SimpleSVG = {
   name: 'simple-svg',
   props: {
     filepath: String,
-    fill: {
-      type: String,
-      default: 'black'
-    },
-    stroke: {
-      type: String,
-      default: 'black'
-    },
-    width: {
-      type: String,
-      default: '1em'
-    },
-    height: {
-      type: String,
-      default: '1em'
-    },
+    fill: String,
+    stroke: String,
+    width: String,
+    height: String,
     id: {
       type: String,
       defualt: ''
