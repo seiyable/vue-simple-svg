@@ -52,7 +52,7 @@ let SimpleSVG = {
     /* check if the argument is a class selector that starts with a dot */
     /* this is a quite simple expression so needs to be updated in the future */
     isClassSelector (selector) {
-      let regex = new RegExp(/^\./, 'i')
+      let regex = new RegExp('/^\./', 'i')
       return (regex.test(selector)) ? true : false
     },
     /* remove a style tag from a inline svg to prevent a global namespace pollution and conflict with other svgs,
