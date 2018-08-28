@@ -75,7 +75,7 @@ let SimpleSVG = {
             // prepare the classname without a dot at the beginning
             let className = selectorToRemove.substring(1)
 
-            if (elements[i].classList.contains(className)) {
+            if (elements[i].classList.includes(className)) {
               // if an element has a class to be removed
 
               // remove the class
@@ -169,7 +169,8 @@ let SimpleSVG = {
           inlinedSVG.style.height = context.height
           inlinedSVG.style.fill = context.fill
           inlinedSVG.style.stroke = context.stroke
-          inlinedSVG.classList.add(myClassName) // add an additional class
+          //inlinedSVG.classList.add(myClassName) // add an additional class
+          inlinedSVG.setAttribute('class', myClassName);
 
           context.$el.appendChild(inlinedSVG)
 
