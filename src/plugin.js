@@ -169,8 +169,7 @@ let SimpleSVG = {
           inlinedSVG.style.height = context.height
           inlinedSVG.style.fill = context.fill
           inlinedSVG.style.stroke = context.stroke
-          //inlinedSVG.classList.add(myClassName) // add an additional class
-          inlinedSVG.setAttribute('class', myClassName);
+          inlinedSVG.setAttribute('class', myClassName); // add an additional class
 
           context.$el.appendChild(inlinedSVG)
 
