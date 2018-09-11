@@ -1,4 +1,5 @@
 const CSSOM = require('cssom')
+require('classlist-polyfill')
 const myClassName = 'simple-svg'
 
 let SimpleSVG = {
