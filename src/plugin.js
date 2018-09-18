@@ -75,7 +75,7 @@ let SimpleSVG = {
             // prepare the classname without a dot at the beginning
             let className = selectorToRemove.substring(1)
 
-            if (elements[i].classList.includes(className)) {
+            if (elements[i].classList.indexOf(className) > -1) {
               // if an element has a class to be removed
 
               // remove the class
