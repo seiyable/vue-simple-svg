@@ -11,6 +11,9 @@
         :width="svgWidth"
         :height="svgHeight"
         :id="svgId"
+        :wrapperClasses="'simple-svg-wrapper'"
+        :svgClasses="'simple-svg-wrapper'"
+        tag="div"
         @ready="svgReady()"
         />
       <p class="button-label" :style="{'color': getLabelColor}"> {{ buttonLabel }} </p>

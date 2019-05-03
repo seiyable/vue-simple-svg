@@ -27,6 +27,9 @@ and use in your component,
   :width="'400px'"
   :height="'400px'"
   :id="'custom-id'"
+  tag="'div'"
+  wrapperClasses="'simple-svg-wrapper'"
+  svgClasses="'simple-svg'"
   @ready="onSvgReady()"
   />
 ```
@@ -40,6 +43,9 @@ and use in your component,
 | width | string | svg's width | '1em' |
 | height | string | svg's height | '1em' |
 | id | string | custom color | '' |
+| wrapperClasses | string, array | custom classes for wrapper | 'simple-svg-wrapper' |
+| svgClasses | string, array | custom classes for svg element | 'simple-svg' |
+| tag | string | custom tag to use on the wrapper | 'div' |
 
 | events | description |
 | ------ | ------ |
