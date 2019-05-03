@@ -1,11 +1,10 @@
 const CSSOM = require('cssom')
-const myClassName = 'simple-svg'
 
 let SimpleSVG = {
   render (createElement) {
-    return createElement('div', {
+    return createElement(this.tag, {
       'class': [
-        'simple-svg-wrapper'
+        Array.isArray(this.wrapperClasses) ? this.wrapperClasses.join(' ') : this.wrapperClasses
       ]
     })
   },
@@ -18,7 +17,19 @@ let SimpleSVG = {
     height: String,
     id: {
       type: String,
-      defualt: ''
+      default: ''
+    },
+    tag: {
+      type: String,
+      default: 'div'
+    },
+    wrapperClasses: {
+      type: [String, Array],
+      default: 'simple-svg-wrapper'
+    },
+    svgClasses: {
+      type: [String, Array],
+      default: 'simple-svg'
     }
   },
   data () {
@@ -46,6 +57,18 @@ let SimpleSVG = {
     },
     height (val) {
       this.updateSVGStyle('height', val)
+    },
+    svgClasses (val) {
+      const svgElement = this.$el.getElementsByTagName('svg')[0]
+      this.updateClasses(svgElement, val)
+    },
+    wrapperClasses (val) {
+      const wrapperElement = this.$el
+      this.updateClasses(wrapperElement, val)
+    },
+    tag () {
+      // re-generate inline svg
+      this.generateInlineSVG()
     }
   },
   methods: {
@@ -169,7 +192,7 @@ let SimpleSVG = {
           inlinedSVG.style.height = context.height
           inlinedSVG.style.fill = context.fill
           inlinedSVG.style.stroke = context.stroke
-          inlinedSVG.classList.add(myClassName) // add an additional class
+          inlinedSVG.classList.add(Array.isArray(context.svgClasses) ? context.svgClasses.join(' ') : context.svgClasses) // add an additional class
 
           context.$el.appendChild(inlinedSVG)
 
@@ -195,7 +218,13 @@ let SimpleSVG = {
       } else {
         console.error('No svg element found. Did you pass a valid .svg file?')
       }
-    }
+    },
+    updateClasses (element, classes) {
+      element.classList = []
+      if (element) {
+        element.classList.add(classes)
+      }
+    },
   }
 }
 
