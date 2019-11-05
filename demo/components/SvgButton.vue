@@ -1,49 +1,53 @@
-<!-- =================================================
- Vue Template
-================================================== -->
 <template>
-  <div @click="toggle()" class="svg-button" :style="{'background-color': getButtonBGColor}">
-    <div class="svg-button-container">
+  <div
+    class="svg-button"
+    :style="{'background-color': buttonBGColor}"
+    @click="toggle()"
+  >
+    <div class="svg-wrapper">
       <simple-svg
-        :filepath="svgFilepath"
-        :fill="getSVGFillColor"
-        :stroke="getSVGFillColor"
-        :width="svgWidth"
-        :height="svgHeight"
-        :id="svgId"
-        @ready="svgReady()"
-        />
-      <p class="button-label" :style="{'color': getLabelColor}"> {{ buttonLabel }} </p>
+        :src="svgSrc"
+        :fill="svgFillColor"
+        fill-class-name="fill-to-change"
+        :stroke="svgFillColor"
+        stroke-class-name="stroke-to-change"
+        width="100%"
+        height="100%"
+        custom-id="my-id"
+        custom-class-name="my-class"
+        @load="svgLoaded()"
+      />
     </div>
+    <p class="button-label" :style="{'color': labelColor}">
+      Click to toggle color
+    </p>
   </div>
 </template>
 
-<!-- =================================================
- Vue Script
-================================================== -->
 <script>
 export default {
   name: 'svg-button',
+  props: {
+    svgSrc: {
+      type: String,
+      required: true
+    }
+  },
   data () {
     return {
       isActive: false,
       regularFill: 'oldlace',
       activeFill: 'tomato',
-      svgFilepath: '/demo/assets/' + 'ufo.svg',
-      svgWidth: 200 + 'px',
-      svgHeight: 200 + 'px',
-      svgId: 'mySVG',
-      buttonLabel: 'Click me to toggle'
     }
   },
   computed: {
-    getSVGFillColor () {
+    svgFillColor () {
       return this.isActive ? this.activeFill : this.regularFill
     },
-    getButtonBGColor () {
+    buttonBGColor () {
       return this.isActive ? this.regularFill : this.activeFill
     },
-    getLabelColor () {
+    labelColor () {
       return this.isActive ? this.activeFill : this.regularFill
     }
   },
@@ -51,41 +55,35 @@ export default {
     toggle () {
       this.isActive = !this.isActive
     },
-    svgReady () {
-      console.log('svg is ready!!')
+    svgLoaded () {
+      console.log('Inline SVG is loaded!')
     }
   }
 }
 </script>
 
-<!-- =================================================
- Vue Style
-================================================== -->
 <style scoped>
 .svg-button {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  -webkit-transform: translate(-50%, -50%);
   border-radius: 20px;
   width: 400px;
   height: 300px;
   padding: 20px;
   text-align: center;
   user-select: none;
-  display: table;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-.svg-button-container {
-  height: 100%;
-  display: table-cell;
-  vertical-align: middle;
+.svg-wrapper {
+  width: 200px;
+  height: 200px;
 }
 
 p.button-label {
   font-size: 32px;
-  margin-top: 20px;
+  margin-top: 40px;
   font-weight: bold;
 }
 </style>
