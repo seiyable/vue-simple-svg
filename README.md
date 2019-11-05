@@ -1,8 +1,8 @@
 # vue-simple-svg (V2)
 A simple Vue.js plugin that allows you to use a component that dynamically loads a .svg file as an inline SVG so you can easily control its style programmatically. No jQuery required.   
 
-I recommend using [vue-svg-loader] (https://www.npmjs.com/package/vue-svg-loader) for the case you just need to load a SVG file as a component. This plugin is built to cover some cases the library doesn't work well which are:
-- loading a SVG file dynamically. You don't have to hard code the file name in the source code and can change the file to load after the component is mounted.
+I recommend using [vue-svg-loader](https://www.npmjs.com/package/vue-svg-loader) for many cases when you just need to load a SVG file as a component. This plugin is built to cover some other cases the library doesn't fit, which are:
+- loading a SVG file dynamically. You don't have to hardcode the filename in the source code. Instead you can specify it at rendering time or change it even after the component is rendered.
 - changing fill color or stroke color of the SVG programmatically with ease and no global css usage.
 
 ### Installation:
@@ -32,7 +32,7 @@ Vue.component('simple-svg', SimpleSVG)
 </svg>
 ```
 
-and use it in your component,
+3. and use it in your component,
 ```html
 <simple-svg
   :src="svgSrc"
@@ -67,7 +67,7 @@ and use it in your component,
 
 
 ### Notes:
-- You need to manually clean up and edit your SVG files beforehand to properly generate the inline SVG. Tips: remove all hardcoded inline styles and unnecessary attributes, especially the ones specifying colors.
+- To generate the inline SVG properly, you need to manually clean up and edit your SVG files beforehand. Tips: remove all hardcoded inline styles and unnecessary attributes, especially the ones specifying colors.
 
 ### Demo:
 ![result](https://media.giphy.com/media/S9RVyPr2L9D76hpDui/giphy.gif)
