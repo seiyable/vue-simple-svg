@@ -67,9 +67,7 @@ and use it in your component,
 
 
 ### Notes:
-- inline svg element has a class '.simple-svg'
-- inline svg has a div wrapper with a class '.simple-svg-wrapper'
-- fill/stroke style set to a path of a SVG will be removed unless its value is 'none'
+- You need to manually clean up and edit your SVG files beforehand to properly generate the inline SVG. Tips: remove all hardcoded inline styles and unnecessary attributes, especially the ones specifying colors.
 
 ### Demo:
 ![result](https://media.giphy.com/media/S9RVyPr2L9D76hpDui/giphy.gif)
@@ -78,7 +76,7 @@ To run demo in your local environment,
 ```sh
 $ npm run dev-demo
 ```
-You can find the code of an example component that has a simple-svg component as its child in demo/components/SvgButton.vue
+You can see the example of how to use simple-svg component at demo/components/SvgButton.vue
 
 ### Reference:
 - Loading a SVG with XMLHttpRequest and DOMParser https://github.com/jonnyhaynes/inline-svg
